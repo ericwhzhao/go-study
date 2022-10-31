@@ -2,7 +2,7 @@
 ## 变量
 
 有3种方法可以声明变量。1、关键字`var`定义变量; 2、提供初始值，省略类型;3、短变量`:=`声明变量;
-```bash
+```go
 package main
 
 import "fmt"
@@ -26,7 +26,7 @@ const x = 1
 注意：常量未使用不会报错
 
 关键字`iota`可以用于定义常量组的自增常量，总是从0开始的
-```bash
+```go
 const (
 		Monday = iota //0
 		Tuesday	  //1
@@ -38,7 +38,7 @@ const (
 	)
 ```
 表达式使用`iota`有更多的用法
-```bash
+```go
 const (
 		_        = iota
 		KB int64 = 1 << (10 * iota)  //iota = 1
@@ -53,19 +53,19 @@ const (
 在Go中，字符串会分配到只读内存段，不能修改内容，底层实现是指向UTF-8字节数组
 
 不能修改内容的体现如下：
-```bash
+```go
 str := "hello"
 str[0] = "H"
 fmt.Println(str[0])
 //报错:cannot assign to str[0] (value of type byte)
 ```
 若想修改字符串的内容，可以整体赋值，相当于重新申请了内存，指向了新的数组
-```bash
+```go
 str := "hello"
 str = "Hello"
 ```
 也可以转换成`[]byte`切片，脱离只读内存的限制，本质是使用了新的内存
-```bash
+```go
 str := "hello"
 bs := ([]byte)(str)
 bs[0] = 'H'
@@ -79,7 +79,7 @@ fmt.Println(string(bs))
 - 直接用"."访问目标成员；
 
 demo如下，指针p指向xy，修改p的值，xy同样改变
-```bash
+```go
 xy := 1234
 p := &xy
 *p++
@@ -90,7 +90,7 @@ fmt.Println(*p, xy)
 
 Go中的结构体类似于Java中的类，demo如下
 
-```bash
+```go
 type user struct {
     name string
     age  int
@@ -100,7 +100,7 @@ func (u *user) hello() {
 	fmt.Println("hello, my name is ", u.name)
 }
 ```
-```bash
+```go
 myUser := user{
     name: "peter",
     age:  18,
